@@ -56,7 +56,7 @@ public class Topo {
 				}
 			}
 		}
-		System.out.println(this.weight);
+//		System.out.println(this.weight);
 		return graph;
 	}
 	
@@ -75,7 +75,7 @@ public class Topo {
 				min = cost;
 				center = s0;
 			}
-			System.out.println("cost = " + cost);
+//			System.out.println("cost = " + cost);
 		}
 		System.out.println("Min cost = " + min);
 		return center;
