@@ -22,6 +22,7 @@ public class ACGTopo {
 	public Graph<Sensor, DefaultWeightedEdge> createACG(int sensor_num, int basic_edge_num,  int edge_num){
 		
 		Random random = new Random();
+		Sensor.initial_count();
 		
 		// create sensor
 		for(int i = 0; i < sensor_num; i++) {
