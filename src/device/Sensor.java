@@ -47,6 +47,10 @@ public class Sensor {
 	public double get_trans_cost() {
 		return trans_cost;
 	}
+	
+	public static void initial_count() {
+		Sensor.count = 0;
+	}
 		
 	public static double calculateDistance(double x1, double y1, double x2, double y2) {
 		return Math.sqrt(Math.pow((x1 - x2), 2.0) + Math.pow((y1 - y2), 2.0));
