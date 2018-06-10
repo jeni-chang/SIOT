@@ -32,8 +32,8 @@ public class Main{
 		 * Algorithm 1-compare ----> MCC
 		 */
 		// use the same graph with OCGS
-		MCCTopo MCC_topo = new MCCTopo();
-		MCC_topo.select_MCC(graph_1);
+//		MCCTopo MCC_topo = new MCCTopo();
+//		MCC_topo.select_MCC(graph_1);
 		
 		System.out.println("*************** Algorithm 2 *************************");
 		/**
