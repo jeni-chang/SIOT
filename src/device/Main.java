@@ -15,7 +15,7 @@ public class Main{
 		 */
 		Graph<Location, Sensor> graph_1 = new SimpleWeightedGraph<>(Sensor.class);
 		OCGSTopo OCGS_topo = new OCGSTopo();
-		graph_1 = OCGS_topo.createOCGS(2, 3, 3);
+		graph_1 = OCGS_topo.createOCGS(5, 3, 3);
 //		System.out.println("Total vertex number => " + graph_1.vertexSet().size());
 //		System.out.println("Total edge number => " + graph_1.edgeSet().size());
 ////		System.out.println(graph_1);
@@ -32,8 +32,9 @@ public class Main{
 		 * Algorithm 1-compare ----> MCC
 		 */
 		// use the same graph with OCGS
-//		MCCTopo MCC_topo = new MCCTopo();
-//		MCC_topo.select_MCC(graph_1);
+		MCCTopo MCC_topo = new MCCTopo();
+		MCC_topo.select_MCC(graph_1);
+//		MCC_topo.select_MCC();
 		
 		System.out.println("*************** Algorithm 2 *************************");
 		/**
