@@ -80,7 +80,9 @@ public class OCGSTopo {
 				}
 			}
 			
-			// Remove some node, remain 30 ~ 60 nodes
+			/** 
+			 * Remove some node, remain 30 ~ 60 nodes
+			 */
 			LinkedList<Location> remove_nodes = new LinkedList<>();
 			List<Location> random_nodes = new ArrayList<>(graph.vertexSet());
 			// shuffle the list
@@ -140,7 +142,7 @@ public class OCGSTopo {
 		}
 		
 		System.out.println("OCGS optimal candidate => " + "Sensor between " + graph.getEdgeSource(candidate) + "and " + graph.getEdgeTarget(candidate));
-		System.out.println("Min cost => " + min);
+		System.out.printf("Min cost => %.2f\n", min);
 	}
 
 }

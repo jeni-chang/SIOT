@@ -85,7 +85,7 @@ public class ACGTopo {
 //			System.out.println("cost = " + cost);
 		}
 		System.out.println("ACG center => " + center);
-		System.out.println("Min cost => " + min);
+		System.out.printf("Min cost => %.2f\n", min);
 	}
 	
 }
