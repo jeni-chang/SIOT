@@ -5,6 +5,7 @@ import java.util.Random;
 public class Sensor {
 	
 	public static final double MAX_RADIUS = 100;
+	public static final double MAX_COST = 100;
 	private int id; //unique ID
 	private static int count = 0;
 	private double x; // x coordinate
@@ -23,9 +24,29 @@ public class Sensor {
 		double a = 2 * Math.PI * angle.nextDouble();
 		this.x = r * Math.cos(a);
 		this.y = r * Math.sin(a);
-		this.SIOT_cost = cost.nextInt(10) + 1;
-		this.trans_cost = cost.nextInt(10) + 1;
+		this.SIOT_cost = Sensor.MAX_COST * cost.nextDouble();
+		this.trans_cost = Sensor.MAX_COST * cost.nextDouble();
 		
+	}
+	
+	public void setID(int id) {
+		this.id = id;
+	}
+	
+	public void setX(double x) {
+		this.x = x;
+	}
+	
+	public void setY(double y) {
+		this.y =y;
+	}
+	
+	public void set_SIOT_cost(double cost) {
+		this.SIOT_cost = cost;
+	}
+	
+	public void set_trans_cost(double cost) {
+		this.trans_cost = cost;
 	}
 	
 	public int getID() {
