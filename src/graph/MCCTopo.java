@@ -7,7 +7,6 @@ import java.util.Set;
 
 import org.jgrapht.Graph;
 import org.jgrapht.GraphTests;
-import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.SimpleWeightedGraph;
 
 import device.*;
