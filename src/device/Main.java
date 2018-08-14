@@ -1,5 +1,8 @@
 package device;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.SimpleWeightedGraph;
@@ -15,7 +18,7 @@ public class Main{
 		 */
 		Graph<Location, Sensor> graph_1 = new SimpleWeightedGraph<>(Sensor.class);
 		OCGSTopo OCGS_topo = new OCGSTopo();
-		graph_1 = OCGS_topo.createOCGS(50, 10, 10);
+		graph_1 = OCGS_topo.createOCGS(70, 10, 10);
 		System.out.println("Total vertex number => " + graph_1.vertexSet().size());
 		System.out.println("Total edge number => " + graph_1.edgeSet().size());
 //		System.out.println(graph_1);
@@ -42,12 +45,28 @@ public class Main{
 		
 		Graph<Sensor, DefaultWeightedEdge> graph_2 = new SimpleWeightedGraph<>(DefaultWeightedEdge.class);	
 		ACGTopo ACG_topo = new ACGTopo();
-		//(sensor_num, basic_edge_num, edge_num)
-		graph_2 = ACG_topo.createACG(50, 5, 15);
+		
+		graph_2 = ACG_topo.createACG(50, 10, 15);
 		System.out.println("Total vertex number => " + graph_2.vertexSet().size());
 		System.out.println("Total edge number => " + graph_2.edgeSet().size());
 //		System.out.println(graph_2);
-		ACG_topo.select_center(graph_2);
+		Sensor center = ACG_topo.select_center(graph_2);
+		
+		// copy the graph
+		Graph<Sensor, DefaultWeightedEdge> graph2_copy = null;
+		graph2_copy = ACGTopo.copy_graph(graph_2);
+		
+		ACG_topo.calculate_all_pair_cost(graph_2, center);
+		
+		System.out.println("*************** Algorithm 2-compare *************************");
+		/**
+		 * Algorithm 2-compare ----> Prims
+		 */
+		
+		PrimsTopo prims_topo = new PrimsTopo();
+		System.out.println("Total vertex number => " + graph2_copy.vertexSet().size());
+		System.out.println("Total edge number => " + graph2_copy.edgeSet().size());
+		prims_topo.calculate_all_pair_cost(graph2_copy);
 		
 	}
 
