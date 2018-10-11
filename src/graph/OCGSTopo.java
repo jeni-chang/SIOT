@@ -30,6 +30,7 @@ public class OCGSTopo {
 		
 		Random random = new Random();
 		Sensor.initial_count();
+//		Location.initial_count();
 		
 		// generate location and (x,y) coordinate
 		// from left to right, from bottom to top
@@ -110,17 +111,16 @@ public class OCGSTopo {
 			
 		}while(!GraphTests.isConnected(graph));
 		
-		
 		return graph;
 	}
 	
 	/**
 	 *   choose a sensor as center, which has minimum cost
 	 */
-	public void select_candidate(Graph<Location, Sensor> graph) {
+	public double select_candidate(Graph<Location, Sensor> graph) {
 		double min = Double.MAX_VALUE;
 		Sensor candidate = null;
-		
+		int edge_size = 0;
 		for(Sensor sensor : graph.edgeSet()) {
 			double cost = 0;
 			// merge two location ==> set edge weight = 0
@@ -134,6 +134,7 @@ public class OCGSTopo {
 			if(cost < min) {
 				min = cost;
 				candidate = sensor;
+				edge_size = spanning_tree.getEdges().size();
 			}
 //			System.out.println("cost => " + cost);
 			
@@ -141,8 +142,27 @@ public class OCGSTopo {
 			graph.setEdgeWeight(sensor, sensor.get_SIOT_cost());
 		}
 		
-		System.out.println("OCGS optimal candidate => " + "Sensor between " + graph.getEdgeSource(candidate) + "and " + graph.getEdgeTarget(candidate));
-		System.out.printf("Min cost => %.2f\n", min);
+//		System.out.println("OCGS optimal candidate => " + "Sensor between " + graph.getEdgeSource(candidate) + "and " + graph.getEdgeTarget(candidate));
+//		System.out.println("Edge number => " + edge_size);
+//		System.out.printf("Min cost => %.2f\n", min);
+		
+		return min;
+	}
+	
+	/**
+	 *   copy graph
+	 */
+	public static Graph<Location, Sensor> copy_graph(Graph<Location, Sensor> orig){
+		Graph<Location, Sensor> copy = new SimpleWeightedGraph<>(Sensor.class);
+		
+		for(Location l : orig.vertexSet())copy.addVertex(l);
+		for(Sensor s : orig.edgeSet()) {
+			Location l1 = orig.getEdgeSource(s);
+			Location l2 = orig.getEdgeTarget(s);
+			copy.addEdge(l1, l2, s);
+		}
+
+		return copy;
 	}
 
 }

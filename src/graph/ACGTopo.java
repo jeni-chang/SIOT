@@ -6,7 +6,6 @@ import org.jgrapht.Graph;
 import org.jgrapht.GraphPath;
 import org.jgrapht.alg.interfaces.ShortestPathAlgorithm.SingleSourcePaths;
 import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
-import org.jgrapht.graph.AbstractBaseGraph;
 import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.SimpleWeightedGraph;
 
@@ -101,7 +100,7 @@ public class ACGTopo{
 			}
 		}
 		System.out.println("ACG center => " + center);
-//		System.out.printf("Min cost => %.2f\n", min);
+		System.out.printf("Min cost => %.2f\n", min);
 		return center;
 	}
 	
@@ -109,7 +108,7 @@ public class ACGTopo{
 	 *  calculate the all pair cost from the graph which is built by Dijkstra algorithm
 	 *  the source node is center
 	 */
-	public void calculate_all_pair_cost(Graph<Sensor, DefaultWeightedEdge> graph, Sensor center ) {
+	public double calculate_all_pair_cost(Graph<Sensor, DefaultWeightedEdge> graph, Sensor center ) {
 		DijkstraShortestPath<Sensor, DefaultWeightedEdge> min_spanning_tree = new DijkstraShortestPath<>(graph);
 		SingleSourcePaths<Sensor, DefaultWeightedEdge> path = min_spanning_tree.getPaths(center);
 		List<DefaultWeightedEdge> remove_edge = new LinkedList<>();
@@ -140,7 +139,9 @@ public class ACGTopo{
 				cost = cost + short_path.getWeight();
 			}
 		}
-		System.out.printf("Min cost => %.2f\n", cost);
+//		System.out.printf("Min cost => %.2f\n", cost);
+		
+		return cost;
 	}
 	
 	/**
@@ -179,8 +180,7 @@ public class ACGTopo{
 		for(DefaultWeightedEdge e : orig.edgeSet()) {
 			Sensor s1 = orig.getEdgeSource(e);
 			Sensor s2 = orig.getEdgeTarget(e);
-			copy.addEdge(s1, s2, e);
-			
+			copy.addEdge(s1, s2, e);	
 		}
 		return copy;
 	}

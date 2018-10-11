@@ -14,7 +14,7 @@ import device.Sensor;
 
 public class PrimsTopo {
 	
-	public void calculate_all_pair_cost(Graph<Sensor, DefaultWeightedEdge> graph) {
+	public double calculate_all_pair_cost(Graph<Sensor, DefaultWeightedEdge> graph) {
 		GraphPath<Sensor, DefaultWeightedEdge> short_path = null;
 		PrimMinimumSpanningTree<Sensor, DefaultWeightedEdge> prims = new PrimMinimumSpanningTree<>(graph);
 		SpanningTree<DefaultWeightedEdge> spanning_tree;
@@ -36,5 +36,6 @@ public class PrimsTopo {
 			}
 		}
 		System.out.printf("Min cost => %.2f\n", cost);
+		return cost;
 	}
 }

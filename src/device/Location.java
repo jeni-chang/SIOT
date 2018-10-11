@@ -28,6 +28,10 @@ public class Location {
 		return s;
 	}
 	
+	public static void initial_count() {
+		Location.count = 0;
+	}
+	
 	@Override
 	public String toString() {
 		return String.format("Location %d ", id);
